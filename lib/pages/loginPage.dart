@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upahaar_solutions/common/customPainterLogin.dart';
-import 'package:upahaar_solutions/widgets/textfield_padding.dart';
+import 'package:upahaar_solutions/widgets/input_password.dart';
+import 'package:upahaar_solutions/widgets/textfield_box.dart';
 
 final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
+
 
 class LoginPage extends StatelessWidget {
   LoginPage({key}) : super(key: key);
@@ -18,11 +20,12 @@ class LoginPage extends StatelessWidget {
         LoginBar(),
         buildLoginBackButton(),
         buildWelcomeBackText(),
-        buildLoginPageBody()
+        buildLoginPageBody(context)
       ],
     ));
   }
 }
+
 
 Widget buildLoginBackButton() {
   return Positioned(
@@ -40,7 +43,7 @@ Widget buildLoginBackButton() {
 
 Widget buildWelcomeBackText() {
   return Positioned(
-    top: 210,
+    top: Get.height * 0.27,
     left: 16,
     child: Text(
       'Welcome\nBack',
@@ -54,15 +57,18 @@ Widget buildWelcomeBackText() {
   );
 }
 
-Widget buildLoginPageBody() {
+Widget buildLoginPageBody(context) {
   return Container(
-    child: SingleChildScrollView(child: Column(
+      child: SingleChildScrollView(
+    child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
+        SizedBox(
+          height: Get.height * 0.55,
+        ),
         buildEmailTextArea(),
         buildPasswordTextArea(),
-        
         buildLoginRow(),
         buildLoginBottomRow()
       ],
@@ -71,17 +77,14 @@ Widget buildLoginPageBody() {
 }
 
 Widget buildEmailTextArea() {
-  return Padding(
-    padding: const EdgeInsets.only(left: 34, right: 34, top: 380, bottom: 0),
-    child: TextFieldPadding(name: 'Email', controller: emailController),
-  );
+  return TextFieldBox(
+      name: 'Email',
+      controller: emailController,
+      inputType: TextInputType.emailAddress);
 }
 
 Widget buildPasswordTextArea() {
-  return Padding(
-    padding: const EdgeInsets.only(left: 34, right: 34, bottom: 20),
-    child: TextFieldPadding(name: 'Password', controller: passwordController)
-  );
+  return InputPassword(name: 'Password', controller: passwordController);
 }
 
 Widget buildLoginRow() {

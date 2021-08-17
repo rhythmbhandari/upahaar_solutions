@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upahaar_solutions/common/customPainterSignUp.dart';
 import 'package:upahaar_solutions/widgets/input_password.dart';
-import 'package:upahaar_solutions/widgets/textfield_padding.dart';
+import 'package:upahaar_solutions/widgets/textfield_box.dart';
 
 class SignUpPage extends StatelessWidget {
   final TextEditingController fullNameController = TextEditingController();
@@ -18,7 +18,7 @@ class SignUpPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          SignUpBar(),
+          SizedBox.expand(child: SignUpBar()),
           Positioned(
             top: 40,
             left: 4,
@@ -45,35 +45,24 @@ class SignUpPage extends StatelessWidget {
             ),
           )),
           Container(
-              child: SingleChildScrollView(
-            child: Column(
+              child: ListView(children: [
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 34, right: 34, top: 200, bottom: 0),
-                  child: TextFieldPadding(
-                      name: 'Full Name', controller: fullNameController),
+                SizedBox(
+                  height: Get.height * 0.27,
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                  child: TextFieldPadding(
-                      name: 'Email', controller: emailController),
+                TextFieldBox(
+                    name: 'Full Name', controller: fullNameController, inputType: TextInputType.name),
+                TextFieldBox(name: 'Email', controller: emailController, inputType: TextInputType.emailAddress),
+                InputPassword(
+                  name: 'Password',
+                  controller: passwordController,
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                  child: InputPassword()
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                  child: TextFieldPadding(
+InputPassword(
                       name: 'Confirm Password',
                       controller: confirmPasswordController),
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   mainAxisSize: MainAxisSize.max,
@@ -137,7 +126,7 @@ class SignUpPage extends StatelessWidget {
                 ),
               ],
             ),
-          )),
+          ]))
         ],
       ),
     );

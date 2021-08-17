@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upahaar_solutions/common/customPainterSignUp.dart';
-import 'package:upahaar_solutions/pages/signUpPage.dart';
-import 'package:upahaar_solutions/widgets/textfield_padding.dart';
+import 'package:upahaar_solutions/widgets/textfield_box.dart';
 
 class SignUpPageAdditional extends StatelessWidget {
   final TextEditingController phoneController = TextEditingController();
@@ -17,14 +16,13 @@ class SignUpPageAdditional extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          SignUpBar(),
+          SizedBox.expand(child: SignUpBar(),),
           Positioned(
             top: 40,
             left: 4,
             child: IconButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SignUpPage()));
+                Get.offNamed("/");
               },
               color: Color.fromRGBO(1, 0, 53, 1),
               icon: Icon(Icons.arrow_back_ios),
@@ -50,31 +48,16 @@ class SignUpPageAdditional extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 34, right: 34, top: 200, bottom: 0),
-                    child: TextFieldPadding(
-                        name: 'Date of Birth', controller: dobController),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                    child: TextFieldPadding(
-                        name: 'Gender', controller: genderController),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                    child: TextFieldPadding(
-                        name: 'Phone Number', controller: phoneController),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                    child: TextFieldPadding(
-                        name: 'Permanent Address',
-                        controller: addressController),
-                  ),
+                  SizedBox(
+                  height:  Get.height * 0.27,
+                ),
+                  TextFieldBox(
+                      name: 'Date of Birth', controller: dobController, inputType: TextInputType.datetime),
+                  TextFieldBox(name: 'Gender', controller: genderController, inputType: TextInputType.name),
+                  TextFieldBox(
+                      name: 'Phone Number', controller: phoneController, inputType: TextInputType.number),
+                  TextFieldBox(
+                      name: 'Permanent Address', controller: addressController, inputType: TextInputType.name),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     mainAxisSize: MainAxisSize.max,
