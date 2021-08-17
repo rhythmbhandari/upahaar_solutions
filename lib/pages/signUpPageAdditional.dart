@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:upahaar_solutions/common/customPainterSignUp.dart';
 import 'package:upahaar_solutions/pages/signUpPage.dart';
-import 'package:upahaar_solutions/pages/welcomePage.dart';
+import 'package:upahaar_solutions/widgets/textfield_padding.dart';
 
 class SignUpPageAdditional extends StatelessWidget {
-  const SignUpPageAdditional({Key? key}) : super(key: key);
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController genderController = TextEditingController();
+  final TextEditingController dobController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+
+  SignUpPageAdditional({key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,62 +53,27 @@ class SignUpPageAdditional extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 34, right: 34, top: 200, bottom: 0),
-                    child: TextField(
-                      enabled: true,
-                      decoration: InputDecoration(
-                        labelText: 'Date of Birth',
-                        labelStyle: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18,
-                          color: Color.fromRGBO(1, 0, 53, 1).withOpacity(0.8),
-                        ),
-                      ),
-                    ),
+                    child: TextFieldPadding(
+                        name: 'Date of Birth', controller: dobController),
                   ),
                   Padding(
                     padding:
                         const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                    child: TextField(
-                      enabled: true,
-                      decoration: InputDecoration(
-                        labelText: 'Gender',
-                        labelStyle: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18,
-                          color: Color.fromRGBO(1, 0, 53, 1).withOpacity(0.8),
-                        ),
-                      ),
-                    ),
+                    child: TextFieldPadding(
+                        name: 'Gender', controller: genderController),
                   ),
                   Padding(
                     padding:
                         const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                    child: TextField(
-                      enabled: true,
-                      decoration: InputDecoration(
-                        labelText: 'Phone Number',
-                        labelStyle: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18,
-                          color: Color.fromRGBO(1, 0, 53, 1).withOpacity(0.8),
-                        ),
-                      ),
-                    ),
+                    child: TextFieldPadding(
+                        name: 'Phone Number', controller: phoneController),
                   ),
                   Padding(
                     padding:
                         const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                    child: TextField(
-                      enabled: true,
-                      decoration: InputDecoration(
-                        labelText: 'Permanent Address',
-                        labelStyle: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18,
-                          color: Color.fromRGBO(1, 0, 53, 1).withOpacity(0.8),
-                        ),
-                      ),
-                    ),
+                    child: TextFieldPadding(
+                        name: 'Permanent Address',
+                        controller: addressController),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -131,7 +102,9 @@ class SignUpPageAdditional extends StatelessWidget {
                               size: 28,
                               color: Color.fromRGBO(1, 0, 53, 1),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.offNamed("/");
+                            },
                             style: ElevatedButton.styleFrom(
                               primary: Color.fromRGBO(255, 110, 78, 1),
                               shape: CircleBorder(),

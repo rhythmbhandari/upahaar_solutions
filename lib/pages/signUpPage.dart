@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:upahaar_solutions/common/customPainterSignUp.dart';
-import 'package:upahaar_solutions/pages/signUpPageAdditional.dart';
-import 'package:upahaar_solutions/pages/welcomePage.dart';
+import 'package:upahaar_solutions/widgets/input_password.dart';
+import 'package:upahaar_solutions/widgets/textfield_padding.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+
+  SignUpPage({key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +24,7 @@ class SignUpPage extends StatelessWidget {
             left: 4,
             child: IconButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => WelcomePage()));
+                Get.offNamed("/");
               },
               color: Colors.white,
               icon: Icon(Icons.arrow_back_ios),
@@ -39,70 +45,34 @@ class SignUpPage extends StatelessWidget {
             ),
           )),
           Container(
-            child: SingleChildScrollView( 
-              child: Column(
+              child: SingleChildScrollView(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 34, right: 34, top: 200, bottom: 0),
-                  child: TextField(
-                    enabled: true,
-                    decoration: InputDecoration(
-                      labelText: 'Full Name',
-                      labelStyle: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                        color: Color.fromRGBO(1, 0, 53, 1).withOpacity(0.8),
-                      ),
-                    ),
-                  ),
+                  child: TextFieldPadding(
+                      name: 'Full Name', controller: fullNameController),
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                  child: TextField(
-                    enabled: true,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      labelStyle: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                        color: Color.fromRGBO(1, 0, 53, 1).withOpacity(0.8),
-                      ),
-                    ),
-                  ),
+                  child: TextFieldPadding(
+                      name: 'Email', controller: emailController),
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                  child: TextField(
-                    enabled: true,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                        color: Color.fromRGBO(1, 0, 53, 1).withOpacity(0.8),
-                      ),
-                    ),
-                  ),
+                  child: InputPassword()
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 34, right: 34, bottom: 0),
-                  child: TextField(
-                    enabled: true,
-                    decoration: InputDecoration(
-                      labelText: 'Confirm Password',
-                      labelStyle: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                        color: Color.fromRGBO(1, 0, 53, 1).withOpacity(0.8),
-                      ),
-                    ),
-                  ),
+                  child: TextFieldPadding(
+                      name: 'Confirm Password',
+                      controller: confirmPasswordController),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -132,10 +102,7 @@ class SignUpPage extends StatelessWidget {
                             color: Colors.white,
                           ),
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignUpPageAdditional()));
+                            Get.toNamed("/signUpSecond");
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Color.fromRGBO(255, 110, 78, 1),
