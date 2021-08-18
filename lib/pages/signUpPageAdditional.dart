@@ -1,12 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upahaar_solutions/common/customPainterSignUp.dart';
+import 'package:upahaar_solutions/widgets/date_picker.dart';
 import 'package:upahaar_solutions/widgets/textfield_box.dart';
+
+
 
 class SignUpPageAdditional extends StatelessWidget {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
-  final TextEditingController dobController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
 
   SignUpPageAdditional({key}) : super(key: key);
@@ -16,7 +19,9 @@ class SignUpPageAdditional extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          SizedBox.expand(child: SignUpBar(),),
+          SizedBox.expand(
+            child: SignUpBar(),
+          ),
           Positioned(
             top: 40,
             left: 4,
@@ -49,15 +54,23 @@ class SignUpPageAdditional extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   SizedBox(
-                  height:  Get.height * 0.27,
-                ),
+                    height: Get.height * 0.27,
+                  ),
+                  DatePicker(),
+                  /*TextFieldBox(
+                      name: 'Date of Birth', controller: dobController, inputType: TextInputType.datetime, ),*/
                   TextFieldBox(
-                      name: 'Date of Birth', controller: dobController, inputType: TextInputType.datetime),
-                  TextFieldBox(name: 'Gender', controller: genderController, inputType: TextInputType.name),
+                      name: 'Gender',
+                      controller: genderController,
+                      inputType: TextInputType.name),
                   TextFieldBox(
-                      name: 'Phone Number', controller: phoneController, inputType: TextInputType.number),
+                      name: 'Phone Number',
+                      controller: phoneController,
+                      inputType: TextInputType.number),
                   TextFieldBox(
-                      name: 'Permanent Address', controller: addressController, inputType: TextInputType.name),
+                      name: 'Permanent Address',
+                      controller: addressController,
+                      inputType: TextInputType.name),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     mainAxisSize: MainAxisSize.max,
@@ -127,5 +140,6 @@ class SignUpPageAdditional extends StatelessWidget {
         ],
       ),
     );
-  }
+  }  
 }
+
