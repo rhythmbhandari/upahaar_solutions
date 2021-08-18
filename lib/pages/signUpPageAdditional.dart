@@ -5,12 +5,11 @@ import 'package:upahaar_solutions/common/customPainterSignUp.dart';
 import 'package:upahaar_solutions/widgets/date_picker.dart';
 import 'package:upahaar_solutions/widgets/textfield_box.dart';
 
-
-
 class SignUpPageAdditional extends StatelessWidget {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
+  final genders = ['Male', 'Female', 'Others', 'No'];
 
   SignUpPageAdditional({key}) : super(key: key);
 
@@ -56,13 +55,30 @@ class SignUpPageAdditional extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.27,
                   ),
-                  DatePicker(),
+                  DatePick(),
                   /*TextFieldBox(
                       name: 'Date of Birth', controller: dobController, inputType: TextInputType.datetime, ),*/
-                  TextFieldBox(
-                      name: 'Gender',
+                  Padding(
+                    padding: const EdgeInsets.only(left: 34, right: 34),
+                    child: TextField(
                       controller: genderController,
-                      inputType: TextInputType.name),
+                      readOnly: true,
+                      onTap: () {
+                        PopupMenuButton<String>(
+                            icon: const Icon(Icons.arrow_drop_down),
+                            onSelected: (String value) {
+                              genderController.text = value;
+                            },
+                            itemBuilder: (BuildContext context) {
+                              return genders
+                                  .map<PopupMenuItem<String>>((String value) {
+                                return new PopupMenuItem(
+                                    child: new Text(value), value: value);
+                              }).toList();
+                            });
+                      },
+                    ),
+                  ),
                   TextFieldBox(
                       name: 'Phone Number',
                       controller: phoneController,
@@ -140,6 +156,5 @@ class SignUpPageAdditional extends StatelessWidget {
         ],
       ),
     );
-  }  
+  }
 }
-
