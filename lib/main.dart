@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:upahaar_solutions/pages/forgotPasswordPage.dart';
 import 'package:upahaar_solutions/pages/loginPage.dart';
 import 'package:upahaar_solutions/pages/signUpPage.dart';
