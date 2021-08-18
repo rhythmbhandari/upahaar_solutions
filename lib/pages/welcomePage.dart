@@ -87,7 +87,11 @@ Widget buildLoginButton() {
 Widget buildWelcomePageButton() {
   return Padding(
     padding: const EdgeInsets.only(bottom: 20.0, top: 60),
-    child: Text(
+    child: GestureDetector(
+          onTap: () {
+            Get.toNamed("forgotPass");
+          },
+          child: Text(
       'Forgot password?',
       style: TextStyle(
         color: Colors.black87,
@@ -95,5 +99,5 @@ Widget buildWelcomePageButton() {
         decoration: TextDecoration.underline,
       ),
     ),
-  );
+  ));
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:upahaar_solutions/pages/forgotPasswordPage.dart';
 import 'package:upahaar_solutions/pages/loginPage.dart';
 import 'package:upahaar_solutions/pages/signUpPage.dart';
 import 'package:upahaar_solutions/pages/signUpPageAdditional.dart';
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/login", page: ()=>LoginPage()),
         GetPage(name: "/signUp", page: ()=>SignUpPage()),
         GetPage(name: "/signUpSecond", page: ()=>SignUpPageAdditional()),
+         GetPage(name: "/forgotPass", page: ()=>ForgotPasswordPage()),
       ],
     );
   }

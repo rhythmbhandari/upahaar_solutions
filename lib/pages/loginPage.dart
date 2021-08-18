@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upahaar_solutions/common/customPainterLogin.dart';
+import 'package:upahaar_solutions/pages/forgotPasswordPage.dart';
 import 'package:upahaar_solutions/widgets/input_password.dart';
 import 'package:upahaar_solutions/widgets/textfield_box.dart';
 
 final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
-
 
 class LoginPage extends StatelessWidget {
   LoginPage({key}) : super(key: key);
@@ -25,7 +25,6 @@ class LoginPage extends StatelessWidget {
     ));
   }
 }
-
 
 Widget buildLoginBackButton() {
   return Positioned(
@@ -152,7 +151,11 @@ Widget buildLoginBottomRow() {
             ),
           ),
         ),
-        Text(
+        GestureDetector(
+          onTap: () {
+            Get.toNamed("forgotPass");
+          },
+          child: Text(
           'Forgot Password',
           style: TextStyle(
             fontWeight: FontWeight.w700,
@@ -162,6 +165,8 @@ Widget buildLoginBottomRow() {
             color: Color.fromRGBO(1, 0, 53, 1),
           ),
         ),
+        ),
+        
       ],
     ),
   );
