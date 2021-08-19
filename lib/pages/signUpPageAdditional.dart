@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upahaar_solutions/common/customPainterSignUp.dart';
+import 'package:upahaar_solutions/pages/loginPage.dart';
 import 'package:upahaar_solutions/widgets/date_picker.dart';
 import 'package:upahaar_solutions/widgets/textfield_box.dart';
 
@@ -9,6 +10,8 @@ class SignUpPageAdditional extends StatelessWidget {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
+  final TextEditingController dateTimeController = TextEditingController();
+
   final genders = ['Male', 'Female', 'Others', 'No'];
 
   SignUpPageAdditional({key}) : super(key: key);
@@ -53,30 +56,43 @@ class SignUpPageAdditional extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   SizedBox(
-                    height: Get.height * 0.27,
+                    height: Get.height * 0.3,
                   ),
-                  DatePick(),
+                  DatePick(dateController:dateTimeController),
                   /*TextFieldBox(
                       name: 'Date of Birth', controller: dobController, inputType: TextInputType.datetime, ),*/
                   Padding(
-                    padding: const EdgeInsets.only(left: 34, right: 34),
-                    child: TextField(
-                      controller: genderController,
-                      readOnly: true,
-                      onTap: () {
-                        PopupMenuButton<String>(
-                            icon: const Icon(Icons.arrow_drop_down),
-                            onSelected: (String value) {
-                              genderController.text = value;
-                            },
-                            itemBuilder: (BuildContext context) {
-                              return genders
-                                  .map<PopupMenuItem<String>>((String value) {
-                                return new PopupMenuItem(
-                                    child: new Text(value), value: value);
-                              }).toList();
-                            });
-                      },
+                    padding: const EdgeInsets.only(left: 34, right: 8),
+                    child: Row(
+                      children: <Widget>[
+                        new Expanded(
+                            child: new TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Gender',
+                            labelStyle: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                              color:
+                                  Color.fromRGBO(1, 0, 53, 1).withOpacity(0.8),
+                            ),
+                          ),
+                          controller: genderController,
+                          readOnly: true,
+                        )),
+                        new PopupMenuButton<String>(
+                          icon: const Icon(Icons.arrow_drop_down),
+                          onSelected: (String value) {
+                            genderController.text = value;
+                          },
+                          itemBuilder: (BuildContext context) {
+                            return genders
+                                .map<PopupMenuItem<String>>((String value) {
+                              return new PopupMenuItem(
+                                  child: new Text(value), value: value);
+                            }).toList();
+                          },
+                        ),
+                      ],
                     ),
                   ),
                   TextFieldBox(
@@ -115,6 +131,7 @@ class SignUpPageAdditional extends StatelessWidget {
                               color: Color.fromRGBO(1, 0, 53, 1),
                             ),
                             onPressed: () {
+                              print(emailController);
                               Get.offNamed("/");
                             },
                             style: ElevatedButton.styleFrom(

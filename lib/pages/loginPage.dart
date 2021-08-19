@@ -120,7 +120,8 @@ Widget buildLoginRowButton() {
           color: Colors.white,
         ),
         onPressed: () {
-          Get.offNamed("/");
+          print("hehe");
+          Get.offNamed("/homePage");
         },
         style: ElevatedButton.styleFrom(
           primary: Color.fromRGBO(255, 110, 78, 1),
